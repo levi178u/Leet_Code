@@ -8,20 +8,24 @@ public:
 
         ll i = 0, j = 0, c = 0, ans = 0;
 
+        unordered_map<int, int> mp;
+
         while (j < n) {
 
-            if (a[j] == maxi) {
-                c++;
-            }
-            while (c >= k) {
+            mp[a[j]]++;
 
-                if (a[i] == maxi) {
-                    c--;
+            while (mp[maxi] >= k) {
+
+                mp[a[i]]--;
+
+                if (mp[a[j]] == 0) {
+                    mp.erase(a[j]);
                 }
+
                 i++;
             }
-            ans += i;
 
+            ans +=i;
             j++;
         }
         return ans;
